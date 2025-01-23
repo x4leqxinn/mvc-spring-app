@@ -19,7 +19,7 @@ import com.x4leqxinn.springboot.webapp.springboot_webapp.models.User;
 public class UserRestController {
 
     // Distintas formas de representar el mapping
-    @RequestMapping(path = "/details2",method = RequestMethod.GET) // Ruta secundaria del metodo
+    @RequestMapping(path = "/details",method = RequestMethod.GET) // Ruta secundaria del metodo
     public Map<String, Object> details(){
         User user = new User("Jorge", "Quintui");
         Map<String, Object> response = new HashMap<>();
