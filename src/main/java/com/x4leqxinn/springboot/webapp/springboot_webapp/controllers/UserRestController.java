@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.x4leqxinn.springboot.webapp.springboot_webapp.models.User;
+import com.x4leqxinn.springboot.webapp.springboot_webapp.models.dto.UserDto;
 
 
 // Podemos usar @Controller - @ResponseBody
@@ -20,11 +21,20 @@ public class UserRestController {
 
     // Distintas formas de representar el mapping
     @RequestMapping(path = "/details",method = RequestMethod.GET) // Ruta secundaria del metodo
-    public Map<String, Object> details(){
+    public UserDto details(){
+        UserDto userDto = new UserDto();
         User user = new User("Jorge", "Quintui");
-        Map<String, Object> response = new HashMap<>();
-        response.put("title", "Hello world =)");
-        response.put("user", user);
-        return response;
+        userDto.setUser(user);
+        userDto.setTitle("hELLO WORLDD!");
+        return userDto;
     }
+
+    // @RequestMapping(path = "/details",method = RequestMethod.GET) // Ruta secundaria del metodo
+    // public Map<String, Object> details(){
+    //     User user = new User("Jorge", "Quintui");
+    //     Map<String, Object> response = new HashMap<>();
+    //     response.put("title", "Hello world =)");
+    //     response.put("user", user);
+    //     return response;
+    // }
 }
