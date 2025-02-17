@@ -1,5 +1,5 @@
 package com.x4leqxinn.springboot.webapp.springboot_webapp.controllers;
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -8,7 +8,6 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import com.x4leqxinn.springboot.webapp.springboot_webapp.models.User;
-import org.springframework.web.bind.annotation.RequestParam;
 
 
 @Controller
@@ -24,7 +23,12 @@ public class UserController {
 
     @GetMapping("/list")
     public String list(ModelMap model) {
-        List<User> users = new ArrayList<>();
+        List<User> users = Arrays.asList(
+            new User("pepa","gonzalez"),
+            new User("lalo","perez", "lalo@gmail.com"),
+            new User("francisca","donoso","fran@gmail.com")
+        );
+
         model.addAttribute("users",users);
         model.addAttribute("title","Listado usuarios");
         return "list";
