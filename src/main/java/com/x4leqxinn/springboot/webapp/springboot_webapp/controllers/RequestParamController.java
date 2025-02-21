@@ -31,8 +31,15 @@ public class RequestParamController {
     
     @GetMapping("/request")
     public ParamDto request(HttpServletRequest request){
+        Integer code = 0;
+        try {
+            code = Integer.parseInt(request.getParameter("code"));
+        } catch (NumberFormatException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+
         ParamDto params = new ParamDto();
-        params.setCode(Integer.parseInt(request.getParameter("code")));
+        params.setCode(code);
         params.setMessage(request.getParameter("message"));
         return params;
     }
