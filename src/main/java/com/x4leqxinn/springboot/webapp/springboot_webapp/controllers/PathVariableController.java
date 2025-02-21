@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequestMapping("/api/var")
 public class PathVariableController {
     
-    @GetMapping("/baz/{message}")
-    public ParamDto baz(@PathVariable String message) {
+    @GetMapping("/baz/{mensajito}")
+    public ParamDto baz(@PathVariable(name = "mensajito") String message) {
         ParamDto param = new ParamDto();
         param.setMessage(message);
         return param;
