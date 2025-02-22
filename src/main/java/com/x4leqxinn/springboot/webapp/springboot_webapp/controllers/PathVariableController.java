@@ -9,6 +9,7 @@ import com.x4leqxinn.springboot.webapp.springboot_webapp.models.dto.ParamDto;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -20,7 +21,17 @@ import org.springframework.web.bind.annotation.RequestBody;
 @RestController
 @RequestMapping("/api/var")
 public class PathVariableController {
-    
+
+    @Value("${config.code}")
+    private String code;
+
+    @Value("${config.message}")
+    private String message;
+
+    @Value("${config.listOfValues}")
+    private String[] listOfValues;
+
+
     @GetMapping("/baz/{mensajito}")
     public ParamDto baz(@PathVariable(name = "mensajito") String message) {
         ParamDto param = new ParamDto();
@@ -41,6 +52,16 @@ public class PathVariableController {
     public User create(@RequestBody User user) {
         // Realizar alguna accion en la base de datos **
         return user;
+    }
+    
+
+    @GetMapping("/values")
+    public Map<String,Object> values() {
+        Map<String, Object> json = new HashMap<>();
+        json.put("code", code);
+        json.put("message", message);
+        json.put("listOfValues", listOfValues);
+        return json;
     }
     
     
